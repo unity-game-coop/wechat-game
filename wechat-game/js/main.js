@@ -7,7 +7,7 @@ import DataBus    from './databus'
 
 // ==== 自定义类 ====
 import CheckBoard from './runtime/checkerboard.js'
-import Arc from './runtime/canvasarc.js'
+import ChessPiece from './runtime/chesspiece.js'
 
 // ==== 自定义类 ====
 
@@ -31,8 +31,8 @@ export default class Main {
 
     let checkBoard = new CheckBoard(ctx)
     checkBoard.drawToCanvas()
-    let arc = new Arc(100, 100, 30)
-    arc.drawArcToCanvas(ctx)
+    let piece = new ChessPiece(70, 70, ctx)
+    piece.gerenate()
     
   }
 

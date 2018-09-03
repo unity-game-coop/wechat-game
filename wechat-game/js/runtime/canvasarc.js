@@ -12,24 +12,22 @@ export default class Arc {
    * y:圆心y坐标
    * r:圆半径
    */
-  constructor(x, y, r) {
+  constructor({x, y, r, fill, strokeColor}) {
     this.x = x
     this.y = y
     this.r = r
+    this.fill = fill
+    this.strokeColor = strokeColor
   }
 
   drawArcToCanvas(ctx) {
     ctx.beginPath()
-
-    let radiaGradient = new RadiaGradient(ctx, [100, 100, 0, 100, 100, 100], ['#ff0000', '#ff0c0c', '#ff1515', '#ff2020', '#ff2c2c', '#fd3a3a', '#e80101', '#d60000'])
-    
-
-    // ctx.strokeStyle = "#b52f2f"
-    // ctx.lineWidth = 5
+    ctx.strokeStyle = this.strokeColor
+    ctx.lineWidth = 4
     ctx.arc(this.x, this.y, this.r, 0, 2 * Math.PI)
     ctx.stroke()
 
-    ctx.fillStyle = radiaGradient.generate()
+    ctx.fillStyle = this.fill
     ctx.fill()
   }
 }

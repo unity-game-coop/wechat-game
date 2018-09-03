@@ -19,7 +19,6 @@ export default class RadiaGradient {
     let step = 1 / (this.colors.length - 1)
     let base = 0
     this.colors.forEach((color, index) => {
-      console.log(index * step)
       grd.addColorStop(index * step, color)
     })
 

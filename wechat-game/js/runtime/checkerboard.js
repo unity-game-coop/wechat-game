@@ -3,9 +3,9 @@
 import Line from './canvasline.js'
 
 // 棋盘最外层方框的大小
-const CHECK_BOARD_SIZE = 300
+const CHECK_BOARD_SIZE = 250
 // 棋盘方框之间的距离
-const RECT_DISTANCE = 50
+const RECT_DISTANCE = 40
 
 /**
  * 棋盘绘制类
