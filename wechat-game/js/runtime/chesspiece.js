@@ -8,7 +8,7 @@ const PIECE_SIZE = 18
 let basePoint = initPos()
 let halfBoardSize = CHECK_BOARD_SIZE / 2
 let doubleDis = RECT_DISTANCE * 2
-const coordCheckBoard = [
+export const CoordCheckBoard = [
   // 棋盘最外层交点坐标
   [basePoint.xLeft, basePoint.yTop],
   [basePoint.xLeft + halfBoardSize, basePoint.yTop],
@@ -32,7 +32,7 @@ const coordCheckBoard = [
   // 棋盘最内层交点坐标
   [basePoint.xLeft + doubleDis, basePoint.yTop + doubleDis],
   [basePoint.xLeft + doubleDis, basePoint.yTop + halfBoardSize],
-  [basePoint.xLeft + doubleDis, basePoint.yBottom + doubleDis],
+  [basePoint.xLeft + doubleDis, basePoint.yBottom - doubleDis],
   [basePoint.xLeft + halfBoardSize, basePoint.yBottom - doubleDis],
   [basePoint.xRight - doubleDis, basePoint.yBottom - doubleDis],
   [basePoint.xRight - doubleDis, basePoint.yBottom - halfBoardSize],

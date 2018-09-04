@@ -3,9 +3,9 @@
  * 位置计算基准数据
  */
 // 棋盘最外层方框的大小
-export const CHECK_BOARD_SIZE = 250
+export const CHECK_BOARD_SIZE = 300
 // 棋盘方框之间的距离
-export const RECT_DISTANCE = 40
+export const RECT_DISTANCE = 50
 
 export function initPos () {
   let screenHeight = canvas.height

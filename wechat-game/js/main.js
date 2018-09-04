@@ -7,6 +7,7 @@ import DataBus    from './databus'
 
 // ==== 自定义类 ====
 import CheckBoard from './runtime/checkerboard.js'
+import { CoordCheckBoard } from './runtime/chesspiece.js'
 import ChessPiece from './runtime/chesspiece.js'
 
 // ==== 自定义类 ====
@@ -31,28 +32,46 @@ export default class Main {
 
     let checkBoard = new CheckBoard(ctx)
     checkBoard.drawToCanvas()
-    console.log(checkBoard)
-    let piece = new ChessPiece({
-      x: checkBoard.base.xLeft, 
-      y: checkBoard.base.yTop, 
-      ctx: ctx
-    })
-    piece.gerenate()
 
-    wx.onTouchStart((touches, changedTouches, timeStamp) => {
-      console.log(touches.touches[0])
-      let touch = touches.touches[0]
-      if (ctx.isPointInPath(touch.pageX, touch.pageY)) {
-        console.log('hello')
+    // CoordCheckBoard.forEach((arr, index) => {
+    //   let piece = new ChessPiece({
+    //     x: arr[0],
+    //     y: arr[1],
+    //     ctx: ctx
+    //   })
+    //   piece.gerenate()
+    // })
+    wx.getNetworkType({
+      success: function (data) {
+        console.log('获取设备电量成功', data)
+      },
+      fail: function () {
+        console.log('获取设备电量失败')
+      },
+      complete: function () {
+        console.log('完成获取设备电量操作')
       }
     })
 
-    let piece1 = new ChessPiece({
-      x: checkBoard.base.xRight,
-      y: checkBoard.base.yTop,
-      ctx: ctx
+    wx.onTouchStart((touches, changedTouches, timeStamp) => {
+      let touch = touches.touches[0]
+      CoordCheckBoard.forEach((arr, index) => {
+        let piece = new ChessPiece({
+          x: arr[0],
+          y: arr[1],
+          ctx: ctx
+        })
+        piece.gerenate()
+        if (ctx.isPointInPath(touch.pageX, touch.pageY)) {
+          console.log(piece.x, piece.y)
+        } else {
+          piece = null
+          ctx.beginPath()
+        }
+
+      })
+      
     })
-    piece1.gerenate()
   }
 
   restart() {
