@@ -12,7 +12,7 @@ export default class Arc {
    * y:圆心y坐标
    * r:圆半径
    */
-  constructor({x, y, r, fill, strokeColor}) {
+  constructor({x, y, r, fill = 'white', strokeColor = 'transprant'}) {
     this.x = x
     this.y = y
     this.r = r

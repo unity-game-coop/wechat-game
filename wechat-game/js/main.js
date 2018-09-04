@@ -31,9 +31,28 @@ export default class Main {
 
     let checkBoard = new CheckBoard(ctx)
     checkBoard.drawToCanvas()
-    let piece = new ChessPiece(70, 70, ctx)
+    console.log(checkBoard)
+    let piece = new ChessPiece({
+      x: checkBoard.base.xLeft, 
+      y: checkBoard.base.yTop, 
+      ctx: ctx
+    })
     piece.gerenate()
-    
+
+    wx.onTouchStart((touches, changedTouches, timeStamp) => {
+      console.log(touches.touches[0])
+      let touch = touches.touches[0]
+      if (ctx.isPointInPath(touch.pageX, touch.pageY)) {
+        console.log('hello')
+      }
+    })
+
+    let piece1 = new ChessPiece({
+      x: checkBoard.base.xRight,
+      y: checkBoard.base.yTop,
+      ctx: ctx
+    })
+    piece1.gerenate()
   }
 
   restart() {

@@ -1,11 +1,7 @@
 
 // import Sprite from '../base/sprite.js'
 import Line from './canvasline.js'
-
-// 棋盘最外层方框的大小
-const CHECK_BOARD_SIZE = 250
-// 棋盘方框之间的距离
-const RECT_DISTANCE = 40
+import { CHECK_BOARD_SIZE, RECT_DISTANCE, initPos } from  '../base/base.js'
 
 /**
  * 棋盘绘制类
@@ -14,7 +10,7 @@ export default class CheckerBoard {
   constructor (ctx) {
     this.ctx = ctx
     this.line = null
-    this.init()
+    this.base = initPos()
   }
   
   /** 
@@ -44,13 +40,13 @@ export default class CheckerBoard {
    */
   calcOutterCoordinate () {
     // 左上角
-    let leftTop = [this.xLeft, this.yTop]
+    let leftTop = [this.base.xLeft, this.base.yTop]
     // 右上角
-    let rightTop = [this.xRight, this.yTop]
+    let rightTop = [this.base.xRight, this.base.yTop]
     // 右下角
-    let rightBottom = [this.xRight, this.yBottom]
+    let rightBottom = [this.base.xRight, this.base.yBottom]
     // 左下角
-    let leftBottom = [this.xLeft, this.yBottom]
+    let leftBottom = [this.base.xLeft, this.base.yBottom]
 
     return [leftTop, rightTop, rightBottom, leftBottom, leftTop]
   }
@@ -59,10 +55,10 @@ export default class CheckerBoard {
    * 计算绘制棋盘中层方框所需坐标
    */
   calcMiddleCoordinate () {
-    let secondLeftTop = [this.xLeft + RECT_DISTANCE, this.yTop + RECT_DISTANCE]
-    let secondRightTop = [this.xRight - RECT_DISTANCE, this.yTop + RECT_DISTANCE]
-    let secondRightBottom = [this.xRight - RECT_DISTANCE, this.yBottom - RECT_DISTANCE]
-    let secondLeftBottom = [this.xLeft + RECT_DISTANCE, this.yBottom - RECT_DISTANCE]
+    let secondLeftTop = [this.base.xLeft + RECT_DISTANCE, this.base.yTop + RECT_DISTANCE]
+    let secondRightTop = [this.base.xRight - RECT_DISTANCE, this.base.yTop + RECT_DISTANCE]
+    let secondRightBottom = [this.base.xRight - RECT_DISTANCE, this.base.yBottom - RECT_DISTANCE]
+    let secondLeftBottom = [this.base.xLeft + RECT_DISTANCE, this.base.yBottom - RECT_DISTANCE]
 
     return [secondLeftTop, secondRightTop, secondRightBottom, secondLeftBottom, secondLeftTop]
   }
@@ -72,10 +68,10 @@ export default class CheckerBoard {
    */
   calcInnerCoordinate () {
     const distance = RECT_DISTANCE * 2
-    let thirdLeftTop = [this.xLeft + distance, this.yTop + distance]
-    let thirdRightTop = [this.xRight - distance, this.yTop + distance]
-    let thirdRightBottom = [this.xRight - distance, this.yBottom - distance]
-    let thirdLeftBottom = [this.xLeft + distance, this.yBottom - distance]
+    let thirdLeftTop = [this.base.xLeft + distance, this.base.yTop + distance]
+    let thirdRightTop = [this.base.xRight - distance, this.base.yTop + distance]
+    let thirdRightBottom = [this.base.xRight - distance, this.base.yBottom - distance]
+    let thirdLeftBottom = [this.base.xLeft + distance, this.base.yBottom - distance]
 
     return [thirdLeftTop, thirdRightTop, thirdRightBottom, thirdLeftBottom, thirdLeftTop]
   }
@@ -85,20 +81,20 @@ export default class CheckerBoard {
    */
   calcMiddleLineCoodrinate () {
     // 左
-    let startLeftPoint = [this.xLeft, this.yTop + CHECK_BOARD_SIZE / 2]
-    let endLeftPoint = [this.xLeft + RECT_DISTANCE * 2, this.yTop + CHECK_BOARD_SIZE / 2]
+    let startLeftPoint = [this.base.xLeft, this.base.yTop + CHECK_BOARD_SIZE / 2]
+    let endLeftPoint = [this.base.xLeft + RECT_DISTANCE * 2, this.base.yTop + CHECK_BOARD_SIZE / 2]
 
     // 上
-    let startTopPoint = [this.xLeft + CHECK_BOARD_SIZE / 2, this.yTop]
-    let endTopPoint = [this.xLeft + CHECK_BOARD_SIZE / 2, this.yTop + RECT_DISTANCE * 2]
+    let startTopPoint = [this.base.xLeft + CHECK_BOARD_SIZE / 2, this.base.yTop]
+    let endTopPoint = [this.base.xLeft + CHECK_BOARD_SIZE / 2, this.base.yTop + RECT_DISTANCE * 2]
 
     // 右
-    let startRightPoint = [this.xRight, this.yTop + CHECK_BOARD_SIZE / 2] 
-    let endRightPoint = [this.xRight - RECT_DISTANCE * 2, this.yTop + CHECK_BOARD_SIZE / 2]
+    let startRightPoint = [this.base.xRight, this.base.yTop + CHECK_BOARD_SIZE / 2] 
+    let endRightPoint = [this.base.xRight - RECT_DISTANCE * 2, this.base.yTop + CHECK_BOARD_SIZE / 2]
 
     // 下
-    let startBottomPoint = [this.xLeft + CHECK_BOARD_SIZE / 2, this.yBottom]
-    let endBottomPoint = [this.xLeft + CHECK_BOARD_SIZE / 2, this.yBottom - RECT_DISTANCE * 2]
+    let startBottomPoint = [this.base.xLeft + CHECK_BOARD_SIZE / 2, this.base.yBottom]
+    let endBottomPoint = [this.base.xLeft + CHECK_BOARD_SIZE / 2, this.base.yBottom - RECT_DISTANCE * 2]
     
     return [[startLeftPoint, endLeftPoint],
             [startTopPoint, endTopPoint],
