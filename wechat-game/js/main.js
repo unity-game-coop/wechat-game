@@ -9,6 +9,7 @@ import DataBus    from './databus'
 import CheckBoard from './runtime/checkerboard.js'
 import { CoordCheckBoard } from './runtime/chesspiece.js'
 import ChessPiece from './runtime/chesspiece.js'
+import { login } from './runtime/login.js'
 
 // ==== 自定义类 ====
 
@@ -41,18 +42,7 @@ export default class Main {
     //   })
     //   piece.gerenate()
     // })
-    wx.getNetworkType({
-      success: function (data) {
-        console.log('获取设备电量成功', data)
-      },
-      fail: function () {
-        console.log('获取设备电量失败')
-      },
-      complete: function () {
-        console.log('完成获取设备电量操作')
-      }
-    })
-
+    login()
     wx.onTouchStart((touches, changedTouches, timeStamp) => {
       let touch = touches.touches[0]
       CoordCheckBoard.forEach((arr, index) => {
